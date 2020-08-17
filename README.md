@@ -139,5 +139,6 @@ MutByGene(nucmerr = nucmerr, gff3 = gene_position, figurelist = TRUE, outdir = o
 #if figurelist = TRUE, the recommendation for figure display(in pixel)is: width=1650, height=1300
 ```
 =======
-
+#### Further
+Other functions usage: globalProteinMut, LastfiveNrMutation. etc. Please refer to the vignettes.
 
