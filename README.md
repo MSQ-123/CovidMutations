@@ -1,19 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# CovidTools
+# CovidMutations
+A feasible framework for annotation and mutation analysis of COVID-19, including mutation profile visualization, statistics and the country distribution of mutational events. The assay data is conducive to detecting mutations in the SARS-CoV-2 genome.
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-This package provides a framework for annotation and mutation analysis
-of coronavirus genome.
-
 ### Installation
 
 ``` r
-devtools::install_github("MSQ-123/CovidTools")
+devtools::install_github("MSQ-123/CovidMutations")
 ```
 
 ### Usage
@@ -141,6 +139,5 @@ MutByGene(nucmerr = nucmerr, gff3 = gene_position, figurelist = TRUE, outdir = o
 #if figurelist = TRUE, the recommendation for figure display(in pixel)is: width=1650, height=1300
 ```
 =======
-# CovidMutations
-A feasible framework for annotation and mutation analysis of COVID-19, including mutation    profile visualization, statistics and the country distribution of mutational events. The assay data is    conducive to detecting mutations in the SARS-CoV-2 genome.
->>>>>>> 9b3a6d3eff038ca62a35a95e45d106d0065fd78e
+
+
