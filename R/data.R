@@ -47,7 +47,7 @@
 #'
 #' @usage data(covid_annot)
 #'
-#' @format A dataframe with 49821 rows and 10 columns.
+#' @format A dataframe with 3258 rows and 10 columns.
 #'
 #' @keywords datasets
 #'
@@ -94,16 +94,16 @@
 
 #' Mutation information derived from "nucmer" SNP analysis
 #'
-#' The "nucmer.snpss" variant file is obtained by processing the SARS-Cov-2 sequence
+#' The "nucmer.snps" variant file is obtained by processing the SARS-Cov-2 sequence
 #' from Gisaid website (complete, high coverage only, low coverage exclusion, Host=human,
 #' Virus name = hCoV-19) with "seqkit" software and "nucmer" scripts. The example data
-#' is downsampled from complete data in 2020-06-14.
+#' is downsampled from complete data in 2020-07-28 (0.01 proportion, 434 samples).
 #'
 #' @docType data
 #'
 #' @usage data(nucmer)
 #'
-#' @format A dataframe with 5000 rows(mutation sites) and 14 columns.
+#' @format A dataframe with 3660 rows(mutation sites) and 14 columns.
 #'
 #' @keywords datasets
 #'
@@ -113,7 +113,7 @@
 #' data(nucmer)
 "nucmer"
 
-#' Preprocessed "nucmer.snpss" file using "nucmerRMD" function
+#' Preprocessed "nucmer.snps" file using "nucmerRMD" function
 #'
 #' A dataset contains some group information subtracted from the "nucmer"
 #' object by "nucmerRMD" function in order to best describe the results.
@@ -122,7 +122,7 @@
 #'
 #' @usage data(nucmerr)
 #'
-#' @format A dataframe with 4982 rows (downsampled mutation sites) and 10
+#' @format A dataframe with 3660 rows (downsampled mutation sites) and 10
 #' columns.
 #'
 #' @keywords datasets
