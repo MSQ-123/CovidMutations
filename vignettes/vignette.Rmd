@@ -4,6 +4,7 @@ author:
 - name: Shaoqian Ma
   affiliation: 
   - School of Life Sciences, Xiamen University
+  email: shaoqianma@qq.com
 - name: Yongyou Zhang
   affiliation: School of Life Sciences, Xiamen University
   email: yongyouzhang@xmu.edu.cn
