@@ -1,7 +1,7 @@
 #' Plot the most frequent mutational events for proteins in the SARS-CoV-2 genome
 #'
 #' @description Plot the most frequent mutational events for proteins selected.
-#' The protein name should be specified correctly(only for SARS-CoV-2).
+#' The protein name should be specified correctly (only for SARS-CoV-2).
 #'
 #' @param results  The mutation effects provided by "indelSNP" function.
 #' @param proteinName Proteins in the SARS-CoV-2 genome, available choices:

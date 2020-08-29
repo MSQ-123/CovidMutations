@@ -24,7 +24,7 @@ Description: A feasible framework for mutation analysis and reverse transcriptio
   polymerase chain reaction (RT-PCR) assay evaluation of COVID-19, including 
   mutation profile visualization, statistics and mutation ratio of each assay. 
   The mutation ratio is conducive to evaluating the coverage of RT-PCR assays in 
-  large-sized samples. Mercatelli, D.; Giorgi, F.M.(2015)
+  large-sized samples. Mercatelli D, Giorgi F M (2015)
   <doi: 10.20944/preprints202004.0529.v1>.
 Depends:
     R (>= 3.6)

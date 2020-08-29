@@ -1,6 +1,7 @@
 #' Bacth assay analysis for last five Nr of primers
 #'
-#' @description Last five nucleotides of primer mutation count/type for any pcr(Polymerase Chain Reaction) primer.
+#' @description Last five nucleotides of primer mutation count/type for any reverse transcription
+#' polymerase chain reaction (RT-PCR) primer.
 #'
 #' @param nucmerr nucmerr Mutation information containing group list(derived from "nucmer" object using "nucmerRMD" function).
 #' @param assays Assays dataframe including the detection ranges of mutations.

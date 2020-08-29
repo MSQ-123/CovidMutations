@@ -1,4 +1,4 @@
-#' Detection of co-occurring mutations using double-assay
+#' Detection of co-occurring mutations using double-assay information
 #'
 #' @description The detection of SARS-CoV-2 is important for the
 #' prevention of the outbreak and management of patients.

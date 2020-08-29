@@ -1,7 +1,7 @@
-#' Provide effects of each SNP, insertion and deletion in virus genome
+#' Provide effects of each single nucleotide polymorphism (SNP), insertion and deletion in virus genome
 #'
 #' @description This function is to annotate the mutational events and indicate their potential effects on the proteins.
-#' Mutational events include SNP(single nucleotide polymorphism), insertion and deletion.
+#' Mutational events include SNP, insertion and deletion.
 #'
 #' @param nucmer An object called "nucmer", mutation information derived
 #' from "nucmer.snp" variant file by "seqkit" software and "nucmer

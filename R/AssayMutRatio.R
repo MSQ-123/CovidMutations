@@ -2,7 +2,7 @@
 #'
 #' @description This function is to use the well established assays information to detect mutations in different
 #' SARS-CoV-2 genomic sites. The output will be series of figures presenting the mutation profile using a
-#' specific assay and a figure for comparison between the mutation detection rate by each assay.
+#' specific assay and a figure for comparison between the mutation detection rate in each primers binding region.
 #'
 #' @param nucmerr nucmerr Mutation information containing group list(derived from "nucmer" object using "nucmerRMD" function).
 #' @param assays Assays dataframe including the detection ranges of mutations.

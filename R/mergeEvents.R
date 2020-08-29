@@ -1,4 +1,4 @@
-#' Merge neighboring events of SNP, insertion and deletion.
+#' Merge neighboring events of single nucleotide polymorphism (SNP), insertion and deletion.
 #'
 #' @description  The first step for handling the nucmer object, then effects of mutations
 #' can be analysed using "indelSNP" function.

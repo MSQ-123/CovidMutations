@@ -1,4 +1,4 @@
-#' Global mutational events profiling of proteins (SARS-CoV-2)
+#' Global mutational events profiling of proteins
 #'
 #' @description This function is to visualize the global protein mutational pattern in the
 #' SARS-CoV-2 genome.

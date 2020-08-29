@@ -1,6 +1,6 @@
 #' Assays for mutation detection using different primers and probes
 #'
-#' These assays include the primer sequences and the detection ranges in which
+#' These assays include the primer detection ranges in which
 #' mutations may occur.
 #'
 #' @docType data
@@ -11,7 +11,8 @@
 #'
 #' @keywords datasets
 #'
-#' @source This data is created by Zhanglab in Xiamen University.
+#' @references Kilic T, Weissleder R, Lee H (2019) iScience 23, 101406.
+#' (\href{https://pubmed.ncbi.nlm.nih.gov/32771976/}{PubMed})
 #'
 #' @examples
 #' data(assays)
