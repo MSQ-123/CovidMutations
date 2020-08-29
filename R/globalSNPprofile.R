@@ -1,6 +1,6 @@
-#' Global SNP profiling in virus genome
+#' Global single nucleotide polymorphism (SNP) profiling in virus genome
 #'
-#' @description This function is to visualize the global SNP(single nucleotide polymorphism) pattern in the
+#' @description This function is to visualize the global SNP pattern in the
 #' SARS-CoV-2 genome.
 #'
 #' @param nucmerr Mutation information containing group list(derived from "nucmer" object using "nucmerRMD" function).
