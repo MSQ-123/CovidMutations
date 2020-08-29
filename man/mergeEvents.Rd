@@ -2,7 +2,7 @@
 % Please edit documentation in R/mergeEvents.R
 \name{mergeEvents}
 \alias{mergeEvents}
-\title{Merge neighboring events of SNP, insertion and deletion.}
+\title{Merge neighboring events of single nucleotide polymorphism (SNP), insertion and deletion.}
 \usage{
 mergeEvents(nucmer = nucmer)
 }

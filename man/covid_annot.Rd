@@ -5,7 +5,7 @@
 \alias{covid_annot}
 \title{Mutation annotation results produced by "indelSNP" function}
 \format{
-A large matrix.
+A dataframe with 49821 rows and 10 columns.
 }
 \source{
 \url{https://www.gisaid.org/}
@@ -14,7 +14,7 @@ A large matrix.
 data(covid_annot)
 }
 \description{
-A large matrix which could be used for downstream analysis like mutation
+A dataframe which could be used for downstream analysis like mutation
 statistics description.
 }
 \examples{

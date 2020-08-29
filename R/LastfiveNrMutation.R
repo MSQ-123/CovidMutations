@@ -17,7 +17,7 @@
 #' @examples
 #' data("nucmerr")
 #' data("assays")
-#' totalsample <- 11000
+#' totalsample <- 1000
 #' outdir <- tempdir()
 #' LastfiveNrMutation(nucmerr = nucmerr,
 #'                    assays = assays,

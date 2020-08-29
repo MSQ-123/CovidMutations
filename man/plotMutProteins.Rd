@@ -27,10 +27,11 @@ Plot the mutational events for selected proteins as output.
 }
 \description{
 Plot the most frequent mutational events for proteins selected.
-The protein name should be specified correctly(only for SARS-CoV-2).
+The protein name should be specified correctly (only for SARS-CoV-2).
 }
 \examples{
 data("covid_annot")
+# make sure the covid_annot is a dataframe
 covid_annot <- as.data.frame(covid_annot)
 #outdir <- tempdir() specify your output directory
 plotMutProteins(results = covid_annot,proteinName = "NSP2", top = 20, outdir = NULL)

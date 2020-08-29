@@ -27,12 +27,13 @@ LastfiveNrMutation(
 Plot the mutation counts(last five nucleotides for each primer) for each assay as output.
 }
 \description{
-Last five nucleotides of primer mutation count/type for any pcr(Polymerase Chain Reaction) primer.
+Last five nucleotides of primer mutation count/type for any reverse transcription
+polymerase chain reaction (RT-PCR) primer.
 }
 \examples{
 data("nucmerr")
 data("assays")
-totalsample <- 11000
+totalsample <- 1000
 outdir <- tempdir()
 LastfiveNrMutation(nucmerr = nucmerr,
                    assays = assays,

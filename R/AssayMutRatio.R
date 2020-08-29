@@ -22,7 +22,7 @@
 #' @examples
 #' data("nucmerr")
 #' data("assays")
-#' Total <- 11000 ## Total Cleared GISAID fasta data, sekitseq
+#' Total <- 1000 ## Total Cleared GISAID fasta data, sekitseq
 #' outdir <- tempdir()
 #' #Output the results
 #' AssayMutRatio(nucmerr = nucmerr,

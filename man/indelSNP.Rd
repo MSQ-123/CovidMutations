@@ -2,7 +2,7 @@
 % Please edit documentation in R/indelSNP.R
 \name{indelSNP}
 \alias{indelSNP}
-\title{Provide effects of each SNP, insertion and deletion in virus genome}
+\title{Provide effects of each single nucleotide polymorphism (SNP), insertion and deletion in virus genome}
 \usage{
 indelSNP(
   nucmer = nucmer,
@@ -34,7 +34,7 @@ Write the result as ".csv" file to the specified directory.
 }
 \description{
 This function is to annotate the mutational events and indicate their potential effects on the proteins.
-Mutational events include SNP(single nucleotide polymorphism), insertion and deletion.
+Mutational events include SNP, insertion and deletion.
 }
 \examples{
 data("nucmer")

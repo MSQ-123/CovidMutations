@@ -21,6 +21,7 @@ Basic descriptions for the mutational events.
 }
 \examples{
 data("covid_annot")
+# make sure the covid_annot is a dataframe
 covid_annot <- as.data.frame(covid_annot)
 #outdir <- tempdir() specify your output directory
 plotMutAnno(results = covid_annot,figureType = "MostMut", outdir = NULL)

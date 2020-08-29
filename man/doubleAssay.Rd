@@ -2,7 +2,7 @@
 % Please edit documentation in R/doubleAssay.R
 \name{doubleAssay}
 \alias{doubleAssay}
-\title{Detection of co-occurring mutations using double-assay}
+\title{Detection of co-occurring mutations using double-assay information}
 \usage{
 doubleAssay(nucmerr = nucmerr, assay1 = assay1, assay2 = assay2, outdir = ".")
 }

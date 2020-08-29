@@ -40,14 +40,14 @@
 
 #' Mutation annotation results produced by "indelSNP" function
 #'
-#' A large matrix which could be used for downstream analysis like mutation
+#' A dataframe which could be used for downstream analysis like mutation
 #' statistics description.
 #'
 #' @docType data
 #'
 #' @usage data(covid_annot)
 #'
-#' @format A large matrix.
+#' @format A dataframe with 49821 rows and 10 columns.
 #'
 #' @keywords datasets
 #'
@@ -94,15 +94,16 @@
 
 #' Mutation information derived from "nucmer" SNP analysis
 #'
-#' The "nucmer.snpss" variant file is obtained by processing the SARS-Cov-2 genomics sequence
-#' from Gisaid website(complete, high coverage only, low coverage exclusion, Host=human, Virus name=hCoV-19)
-#' by "seqkit" software and "nucmer SNP-calling" scripts. The total sample size is 5465.
+#' The "nucmer.snpss" variant file is obtained by processing the SARS-Cov-2 sequence
+#' from Gisaid website (complete, high coverage only, low coverage exclusion, Host=human,
+#' Virus name = hCoV-19) with "seqkit" software and "nucmer" scripts. The example data
+#' is downsampled from complete data in 2020-06-14.
 #'
 #' @docType data
 #'
 #' @usage data(nucmer)
 #'
-#' @format A dataframe with 43730 rows(mutation sites) and 14 columns.
+#' @format A dataframe with 5000 rows(mutation sites) and 14 columns.
 #'
 #' @keywords datasets
 #'
@@ -121,7 +122,7 @@
 #'
 #' @usage data(nucmerr)
 #'
-#' @format A dataframe with 150000 rows(downsampled mutation sites) and 10
+#' @format A dataframe with 4982 rows (downsampled mutation sites) and 10
 #' columns.
 #'
 #' @keywords datasets

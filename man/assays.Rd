@@ -7,17 +7,18 @@
 \format{
 A dataframe with 10 rows and 7 columns.
 }
-\source{
-This data is created by Zhanglab in Xiamen University.
-}
 \usage{
 data(assays)
 }
 \description{
-These assays include the primer sequences and the detection ranges in which
+These assays include the primer detection ranges in which
 mutations may occur.
 }
 \examples{
 data(assays)
+}
+\references{
+Kilic T, Weissleder R, Lee H (2019) iScience 23, 101406.
+(\href{https://pubmed.ncbi.nlm.nih.gov/32771976/}{PubMed})
 }
 \keyword{datasets}

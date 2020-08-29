@@ -2,7 +2,7 @@
 % Please edit documentation in R/globalProteinMut.R
 \name{globalProteinMut}
 \alias{globalProteinMut}
-\title{Global mutational events profiling of proteins (SARS-CoV-2)}
+\title{Global mutational events profiling of proteins}
 \usage{
 globalProteinMut(
   covid_annot = covid_annot,
@@ -35,6 +35,7 @@ SARS-CoV-2 genome.
 \examples{
 data("covid_annot")
 outdir <- tempdir()
+# make sure the covid_annot is a dataframe
 covid_annot <- as.data.frame(covid_annot)
 globalProteinMut(covid_annot = covid_annot,
                  outdir = outdir,

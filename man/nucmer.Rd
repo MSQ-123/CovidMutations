@@ -5,7 +5,7 @@
 \alias{nucmer}
 \title{Mutation information derived from "nucmer" SNP analysis}
 \format{
-A dataframe with 43730 rows(mutation sites) and 14 columns.
+A dataframe with 5000 rows(mutation sites) and 14 columns.
 }
 \source{
 \url{https://www.gisaid.org/}
@@ -14,9 +14,10 @@ A dataframe with 43730 rows(mutation sites) and 14 columns.
 data(nucmer)
 }
 \description{
-The "nucmer.snpss" variant file is obtained by processing the SARS-Cov-2 genomics sequence
-from Gisaid website(complete, high coverage only, low coverage exclusion, Host=human, Virus name=hCoV-19)
-by "seqkit" software and "nucmer SNP-calling" scripts. The total sample size is 5465.
+The "nucmer.snpss" variant file is obtained by processing the SARS-Cov-2 sequence
+from Gisaid website (complete, high coverage only, low coverage exclusion, Host=human,
+Virus name = hCoV-19) with "seqkit" software and "nucmer" scripts. The example data
+is downsampled from complete data in 2020-06-14.
 }
 \examples{
 data(nucmer)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/globalSNPprofile.R
 \name{globalSNPprofile}
 \alias{globalSNPprofile}
-\title{Global SNP profiling in virus genome}
+\title{Global single nucleotide polymorphism (SNP) profiling in virus genome}
 \usage{
 globalSNPprofile(
   nucmerr = nucmerr,
@@ -29,7 +29,7 @@ default is "global".}
 Plot the selected figure type as output.
 }
 \description{
-This function is to visualize the global SNP(single nucleotide polymorphism) pattern in the
+This function is to visualize the global SNP pattern in the
 SARS-CoV-2 genome.
 }
 \examples{

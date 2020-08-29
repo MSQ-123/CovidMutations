@@ -5,7 +5,7 @@
 \alias{nucmerr}
 \title{Preprocessed "nucmer.snpss" file using "nucmerRMD" function}
 \format{
-A dataframe with 150000 rows(downsampled mutation sites) and 10
+A dataframe with 4982 rows (downsampled mutation sites) and 10
 columns.
 }
 \source{

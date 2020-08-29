@@ -18,6 +18,7 @@
 #' @examples
 #' data("covid_annot")
 #' outdir <- tempdir()
+#' # make sure the covid_annot is a dataframe
 #' covid_annot <- as.data.frame(covid_annot)
 #' globalProteinMut(covid_annot = covid_annot,
 #'                  outdir = outdir,

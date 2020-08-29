@@ -29,12 +29,12 @@ Plot the selected figure type as output.
 \description{
 This function is to use the well established assays information to detect mutations in different
 SARS-CoV-2 genomic sites. The output will be series of figures presenting the mutation profile using a
-specific assay and a figure for comparison between the mutation detection rate by each assay.
+specific assay and a figure for comparison between the mutation detection rate in each primers binding region.
 }
 \examples{
 data("nucmerr")
 data("assays")
-Total <- 11000 ## Total Cleared GISAID fasta data, sekitseq
+Total <- 1000 ## Total Cleared GISAID fasta data, sekitseq
 outdir <- tempdir()
 #Output the results
 AssayMutRatio(nucmerr = nucmerr,
