@@ -63,8 +63,7 @@ LastfiveNrMutation <- function(nucmerr = nucmerr, assays = assays, totalsample =
         geom_vline(aes(xintercept=R2),color="red", linetype="dashed", size=0.5)+
         geom_vline(aes(xintercept=F2five),color="gray", linetype="dashed", size=0.5)+
         geom_vline(aes(xintercept=R1five),color="gray", linetype="dashed", size=0.5)
-
-    }
+}
 
     p <- plot_grid(plotlist=plist,ncol=4)
     print(p)

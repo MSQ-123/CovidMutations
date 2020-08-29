@@ -35,5 +35,9 @@ SARS-CoV-2 genome.
 \examples{
 data("nucmerr")
 outdir <- tempdir()
-globalSNPprofile(nucmerr = nucmerr, outdir = outdir, figure_Type = "heatmap", country = "global", top = 5)
+globalSNPprofile(nucmerr = nucmerr,
+                 outdir = outdir,
+                 figure_Type = "heatmap",
+                 country = "global",
+                 top = 5)
 }

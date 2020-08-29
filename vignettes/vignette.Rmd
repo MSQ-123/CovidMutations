@@ -1,5 +1,5 @@
 ---
-title: "CovidMutations: a feasible framework for annotation and mutation analysis of COVID-19"
+title: "CovidMutations: a feasible framework for mutation analysis and assays validation of COVID-19"
 author:
 - name: Shaoqian Ma
   affiliation: 
@@ -9,20 +9,20 @@ author:
   email: yongyouzhang@xmu.edu.cn
 date: "`r format(Sys.time(), '%b %Y')`"
 
-output:
+output: 
   BiocStyle::html_document:
-    toc_float: true
-    fig_caption: true
-    number_sections: true
-bibliography: [bibliography.bib, url.bib]
+  toc_float: true
+  fig_caption: true
+  number_sections: true
+bibliography: [bibliography.bib, url.bib, molecular_dia.bib]
 vignette: >
-  %\VignetteIndexEntry{CovidMutations: a feasible framework for annotation and mutation analysis of COVID-19}
+  %\VignetteIndexEntry{CovidMutations: a feasible framework for mutation analysis and assays validation of COVID-19}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 nocite: | 
   @RN206, @RN205
 abstract: >
-  Fundamental aspects of SARS-CoV-2 biology remain to be described, having the potential to provide insight to the response effort for this high-priority pathogen. Here we describe several aspects of mutational characteristics of SARS-CoV-2, including the geographical distribution, mutations density across the genome, mutation counts for each gene and proteins and evaluation of effectiveness of designed assays (presenting the mutational ratio). We believe that the analytic tools for dessecting sequence information throughout the SARS-CoV-2 pandemic will provide valuable insights into public health and genomic epidemiology.
+  Fundamental aspects of SARS-CoV-2 biology remain to be described, having the potential to provide insights into the response effort for this high-priority pathogen. Here we describe several aspects of mutational characteristics of SARS-CoV-2 and lay out evaluation of effectiveness of designed reverse transcription polymerase chain reaction (RT-PCR) assays. We believe that the analytic tools for dessecting sequence information and the diagnostic performance of different assays throughout the SARS-CoV-2 pandemic will provide valuable insights into public health and genomic epidemiology.
 ---
 
 <p>
@@ -30,6 +30,7 @@ abstract: >
 <br />
 **Package version**: `r packageVersion("CovidMutations")`
 </p>
+
 
 ```{r setup, include=FALSE}
 #set knitr chunk options
@@ -58,18 +59,9 @@ knitr::opts_chunk$set(
 ```
 
 
-# Function Overview of CovidMutations
-
-![](overviewShiny.jpg)
-
-![](density_plot.jpg)
-
-![](assays_plot.jpg)
-![](SNP_plot.jpg)
-
 # Introduction
 
-  The novel respiratory disease COVID-19 has caused worldwide pandemic and large efforts are currently being undertaken in characterizing the virus (SARS-CoV-2) causing it in both molecular and epidemiological aspects[@Dong.2020]. The genomic variability of SARS-CoV-2 may largely correlate with the virus specific etiological effects[@Kim.2020]. In the present study, by detailing the characteristics of SARS-CoV-2 complete genomes currently available on the Global Initiative on Sharing Avian Influenza Data (GISAID) consortium[@Elbe.2017], We analyze and annotate all SARS-CoV-2 mutations compared with the reference Wuhan genome NC_045512.2. Our analysis shows the mutational pattern of different type of mutations and may reveal their potential effects on proteins. Also, we present a feasible method to evaluate the detection efficiency of different Real-time reverse-transcription polymerase chain reaction (RT-PCR) assays available as example data[@SanchezPadilla.2015]. By tracking mutational trends in viral sequences and evaluating the effectiveness of assay for mutation detection, we provide options for further design of highly sensitive, clinically useful assays. Our analysis may provide new strategies of antiviral therapy based on the molecular characteristics of this novel virus[@Mercatelli.2020].
+  The novel respiratory disease COVID-19 has caused worldwide pandemic and large efforts are currently being undertaken in characterizing the virus (SARS-CoV-2) causing it in both molecular and epidemiological aspects[@Dong.2020]. The genomic variability of SARS-CoV-2 may largely correlate with the virus specific etiological effects[@Kim.2020]. In the present study, by detailing the characteristics of SARS-CoV-2 complete genomes currently available on the Global Initiative on Sharing Avian Influenza Data (GISAID) consortium[@Elbe.2017], We analyze and annotate all SARS-CoV-2 mutations compared with the reference Wuhan genome NC_045512.2. Our analysis shows the mutational pattern of different type of mutations and may reveal their potential effects on proteins. Reverse transcription polymerase chain reaction (RT-PCR) was the first method developed for COVID-19 detection and is the current gold standard as it offers both high accuracy and throughput[@Corman.2020]. it is increasingly critical to evaluate the performance of RT-PCR tests using both experimental tests and in-silico analysis. Here we present a feasible method to evaluate the detection efficiency of different real-time reverse-transcription polymerase chain reaction (RT-PCR) assays available as example data[@SanchezPadilla.2015]. By tracking mutational trends in viral sequences and evaluating the effectiveness of assay (mutation ratio in detecting regions), we provide options for further design of highly sensitive, clinically useful assays. Our analysis may provide new strategies of antiviral therapy based on the molecular characteristics of this novel virus[@Mercatelli.2020].
 
 # Downloading and preparing the data
 
@@ -272,7 +264,39 @@ To assess the geographical distribution of virus strain and provide global profi
 data("chinalist")
 #outdir <- tempdir()
 nucmerr<- nucmerRMD(nucmer = nucmer, outdir = NULL, chinalist = chinalist)
+head(nucmerr)
 ```
+
+For analyzing virus data other than SARS-CoV-2, users can also make their own `nucmerr` object, following code below:
+
+```{r nucmerrDIY1, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#make sure that the nucmer object has the right column name: "rpos","rvar","qvar","qpos","ID"
+nucmer <- nucmer[,c(1,2,3,4,14)]
+colnames(nucmer)<-c("rpos","rvar","qvar","qpos","ID")
+```
+
+Add sample, time, country group columns: please make sure that the `nucmer` ID comprises necessary group information in format like:
+```{r ID, eval=FALSE}
+hCoV-19/France/B5322/2020|EPI_ISL_443266|2020-03-16
+```
+
+Extract simplified ID (EPI_ISL_443266), time (2020-03-16) and country (France) from `nucmer` ID and add mutation types:
+```{r nucmerrDIY2, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+nucmer$sample <-vapply(strsplit(as.character(nucmer$ID), "[|]"), function(x) x[2], character(1))
+nucmer$time <-vapply(strsplit(as.character(nucmer$ID), "[|]"), function(x) x[3], character(1))
+nucmer$country <-vapply(strsplit(as.character(nucmer$ID), "[/]"), function(x) x[2], character(1))
+
+#M_type represents mutation type, PM_type represents positions and mutation type.  
+nucmer$M_type <-str_c(nucmer$rvar,nucmer$qvar,sep ="->")
+nucmer$PM_type <-str_c(nucmer$rpos,nucmer$M_type,sep =":")
+```
+
+The updated nucmer is nucmerr now, check the format:
+```{r, nucmerrCheck, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+nucmerr <- nucmer
+head(nucmerr)
+```
+
 
 ## Global SNP profiling in virus genome
 
@@ -295,6 +319,30 @@ Now we can compare the "USA" pattern with the "England" pattern:
 
 ```{r EngSNPprofile, fig.cap = "Local SNPs pattern across the genome (for England)", echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 globalSNPprofile(nucmerr = nucmerr, outdir = NULL, figure_Type = "heatmap", country = "England", top = 5)
+```
+
+The country list:
+
+```{r countrylist, eval=FALSE}
+ [1] "Algeria"     "Argentina"   "Australia"   "Austria"     "Bahrein"    
+ [6] "Bangladesh"  "bat"         "Belgium"     "Benin"       "Brazil"     
+[11] "Brunei"      "Bulgaria"    "Canada"      "Chile"       "China"      
+[16] "Colombia"    "Croatia"     "Cyprus"      "Denmark"     "DRC"        
+[21] "Ecuador"     "Egypt"       "England"     "env"         "Estonia"    
+[26] "Felis"       "Finland"     "France"      "Gambia"      "Georgia"    
+[31] "Germany"     "Greece"      "Hungary"     "Iceland"     "india"      
+[36] "India"       "Indonesia"   "Iran"        "Ireland"     "Israel"     
+[41] "Italy"       "ITALY"       "Jamaica"     "Japan"       "Jordan"     
+[46] "Kazakhstan"  "Kenya"       "Korea"       "Latvia"      "Lebanon"    
+[51] "Luxembourg"  "Malaysia"    "Mexico"      "mink"        "Mongolia"   
+[56] "Morocco"     "Netherlands" "New"         "Nigeria"     "Norway"     
+[61] "Oman"        "Pakistan"    "pangolin"    "Poland"      "Portugal"   
+[66] "Puerto"      "Romania"     "Russia"      "Scotland"    "Senegal"    
+[71] "Serbia"      "Shaoxing"    "Singapore"   "Slovakia"    "South"      
+[76] "SouthAfrica" "Spain"       "Sweden"      "Switzerland" "Taiwan"     
+[81] "Thailand"    "Tunisia"     "Turkey"      "Uganda"      "United"     
+[86] "Uruguay"     "USA"         "Venezuela"   "Vietnam"     "Wales"      
+[91] "Yichun"  
 ```
 
 ## Global protein mutational events profiling
@@ -370,7 +418,7 @@ Genes responsible for virus infection or transmission may have higher mutation c
 
 The "gene_position" file is derived from gff3 file. If `figurelist` = FALSE, mutation counts for each gene is saved as figure file.
 
-```{r MutByGene, fig.cap = "Mutation counts for each gene", echo=TRUE, fig.height=13, fig.width=17, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r MutByGene, fig.cap = "Mutation counts for each gene", echo=TRUE, fig.height=8, fig.width=10, message=FALSE, warning=FALSE, paged.print=FALSE}
 data("gene_position")
 #outdir <- tempdir()
 MutByGene(nucmerr = nucmerr, gff3 = gene_position, figurelist = TRUE, outdir = NULL)
@@ -379,23 +427,22 @@ MutByGene(nucmerr = nucmerr, gff3 = gene_position, figurelist = TRUE, outdir = N
 
 
 
-# Assays to detect mutations
+# Assays efficiency
 
-The detection of SARS-CoV-2 is important for the prevention of the outbreak and management of patients. Real-time reverse-transcription polymerase chain reaction (RT-PCR) assay is one of the most effective molecular diagnosis strategies to detect virus in clinical laboratory[@Hirotsu.2020].
+The detection of SARS-CoV-2 is important for the prevention of the outbreak and management of patients. RT-PCR assay is one of the most effective molecular diagnosis strategies to detect virus in clinical laboratory[@Kilic.2020].
 
-## Calculate the mutation detection rate using different assays
+## Calculate the mutation ratio using different assays
 
-The `assays` example data contains some current assays for detecting mutations across the SARS-CoV-2 genome. The "F1", "F2", "R1", "R2" refer to genomic positions of two pairs of primers (forward primer and reverse primer). The "P1","P2" refer to genomic positions of probes for detection. As SARS-CoV-2 genome is still changing over time, we assume that assays for detecting mutations should also be changed and optimized. Users can design their own assay and transform the assays information according to the format shown by the example data to evaluate whether their assays are efficient for detecting interesting mutations.
+The `assays` example data contains some current assays for detecting  SARS-CoV-2 genome for different regions, like ORF-1ab, N protein, etc. The "F1", "F2", "R1", "R2" refer to genomic positions of two pairs of primers (forward primer and reverse primer). The "P1","P2" refer to genomic positions of probes for detection. As SARS-CoV-2 genome is still evolving over time, we assume that assays for detecting this pathogen should also be changed and optimized given that assays detecting high-mutation-ratio region may lead to more false negatives, which may cause severe results. Users can design their own assay and transform the assays information according to the format shown by the example data to evaluate whether their assays are efficient for detecting potential SARS-CoV-2.
 
 ```{r assays, echo=TRUE, message=FALSE, warning=FALSE}
 data("assays")
 assays
 ```
 
-The function `AssayMutRatio` is to use the well established assays information to detect mutations in different SARS-CoV-2 genomic sites. The output will be series of figures presenting the mutation profile using a specific assay (output as file) and a figure for comparison between the mutation detection rate by each assay (if `outdir` is NULL, it returns only the figure for comparison).
+The function `AssayMutRatio` is to use the well established RT-PCR assays information to detect mutation ratio in different SARS-CoV-2 genomic sites. The output will be series of figures presenting the mutation profile using a specific assay (output as file, the arrows show the directions of primers (red) and probes (blue). F1, R2, P1 for 5', F2, R1, P2 for 3') and a figure for comparison between the mutation ratio by each assay (if `outdir` is NULL, it returns only the figure for comparison). To some extent we believe that the lower the mutation ratio, the higher the reliability of RT-PCR.
 
 ```{r AssayMutRatio, fig.cap = "Mutation detection rate using different assays", echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
-data("assays")
 Total <- 4000 ## Total Cleared GISAID fasta data, sekitseq
 #outdir <- tempdir()
 #Output the results
@@ -407,17 +454,17 @@ AssayMutRatio(nucmerr = nucmerr,
 
 ```
 
-If `outdir` is specified, one of the output figure of assays for mutation detection is like:
+If `outdir` is specified, one of the output figure of assays is like:
 
-![](ChinaCDC-N.png)
+![](USACDC-N1.png)
 
 ## Bacth assay analysis for last five Nr of primers
 
-Last five nucleotides of primer mutation count/type for any PCR (Polymerase Chain Reaction) primer. This is also an evaluation aspect for assays efficiency.
+Last five nucleotides of primer mutation count/type for any RT-PCR primer. This is also an evaluation aspect for assays efficiency.
 
 The `LastfiveNrMutation` function returns mutation counts(last five nucleotides for each primer) for each assay as output. If the `figurelist` = FALSE, it outputs each assay detecting profile as image file separately.
 
-```{r LastfiveNrMutation, fig.cap = "Mutation detection counts (last five nucleotides for each primer) using different assays", echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r LastfiveNrMutation, fig.cap = "Mutation detection counts (last five nucleotides for each primer) using different assays", echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, fig.height=8, fig.width=10}
 totalsample <- 4000
 
 LastfiveNrMutation(nucmerr = nucmerr,
@@ -428,14 +475,16 @@ LastfiveNrMutation(nucmerr = nucmerr,
 
 ```
 
+e.g., the last five nucleotides mutation pattern of primers of ChinaCDC-N:
+![](CDC-N-lastfive.png)
 
 ## Detection of co-occurring mutations using double-assay
 
-Moreover, researchers may have a question about the performance of double assays in detecting co-occurring mutations in the same samples with significant mutational pattern, as some mutations are definitely co-occurring more frequently. Here we designed a function for simultaneously measuring the mutated samples using two different assays. The information of first assay and second assay should be  structured like the example assays data, containing F1, F2, R1, R2, P1, P2 sites.  
+Moreover, researchers may have a question about the performance of double assays in detecting samples with co-occurring mutations (significant mutational pattern), as some mutations are definitely co-occurring more frequently. Further, specificity of a test is enhanced by targeting multiple loci[@Kilic.2020]. Here we designed a function for simultaneously measuring the mutated samples using two different assays. The information of first assay and second assay should be  structured like the example assays data, containing F1, F2, R1, R2, P1, P2 sites.  
 
 Users can use their personalized assay data to implement the code below. 
 
-```{r doubleAssay, fig.cap = "Mutation detection counts (last five nucleotides for each primer) using double assays. The samples shown on the y-axis for both assays are co-occurring mutated samples. Because the downsampled example data is too small, here we also display the actual results using real data shown below", echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r doubleAssay, fig.cap = "Mutation detection counts (last five nucleotides for each primer) using double assays. The samples shown on the y-axis for both assays are co-occurring mutated samples. Because the downsampled example data is too small, here we also display the actual results using real data shown below", echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, fig.height=6, fig.width=10}
 assay1 <- assays[1,]
 assay2 <- assays[2,]
 doubleAssay(nucmerr = nucmerr,
@@ -446,11 +495,12 @@ doubleAssay(nucmerr = nucmerr,
 ```
 
 
-The co_Mutation_Ratio is calculated by dividing the number of samples with co-occurring mutations by the mutated samples detected using each assay.
+The `co_Mutation_Ratio` is calculated by dividing the number of samples with co-occurring mutations by the total mutated samples detected using each assay.
 
 The co-occurring mutated samples are shown as the overlap in the "venn" diagram. The `doubleAssay` function returns the information of these samples as `.csv` file by giving the `outdir` parameter. 
 
-![](doubleAssay.png)
+We believe that the lower the `co_Mutation_Ratio` , the more efficient the detection.
+
 
 # Packages used
 

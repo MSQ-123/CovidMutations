@@ -21,6 +21,7 @@
 #' @export
 #' @importFrom ggplot2 aes ggplot geom_point theme_bw scale_x_continuous geom_vline
 #' theme labs scale_y_sqrt ggsave scale_y_continuous element_text geom_bar geom_text
+#' annotate arrow
 #' @importFrom ggpubr ggarrange
 #' @importFrom dplyr inner_join
 #' @importFrom VennDiagram venn.diagram
@@ -83,7 +84,8 @@ doubleAssay<- function(nucmerr = nucmerr, assay1 = assay1, assay2 = assay2, outd
     geom_vline(aes(xintercept=P2),color="gray", linetype="solid", size=0.5)+
     theme(axis.text.x = element_text(angle=90, hjust=1, vjust=.5))+
     labs(x="SARS-CoV-2 Genomic position",
-         title=paste0(assay1$Assay,"-Co-occurring Mutant Samples:", co_occur,"/co_Mutation_Ratio:",Mutation_Ratio1,"%"))
+         title=paste0(assay1$Assay,"-Co-occurring Mutant Samples:", co_occur,"/co_Mutation_Ratio:",Mutation_Ratio1,"%"))+
+    annotate("segment",x=F1,xend=F2,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour = "red", size = 1)+annotate("segment",x=R2,xend=R1,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour = "red", size = 1)+annotate("segment",x=P1,xend=P2,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour="blue", size = 1)
 
   rpos.y <- sub_nucmer$rpos.y
   #sample<- sub_nucmer$sample
@@ -100,8 +102,8 @@ doubleAssay<- function(nucmerr = nucmerr, assay1 = assay1, assay2 = assay2, outd
     geom_vline(aes(xintercept=P2),color="gray", linetype="solid", size=0.5)+
     theme(axis.text.x = element_text(angle=90, hjust=1, vjust=.5))+
     labs(x="SARS-CoV-2 Genomic position",
-         title=paste0(assay2$Assay,"-Co-occurring Mutant Samples:", co_occur,"/co_Mutation_Ratio:",Mutation_Ratio2,"%"))
-
+         title=paste0(assay2$Assay,"-Co-occurring Mutant Samples:", co_occur,"/co_Mutation_Ratio:",Mutation_Ratio2,"%"))+
+    annotate("segment",x=f1,xend=f2,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour = "red", size = 1)+annotate("segment",x=r2,xend=r1,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour = "red", size = 1)+annotate("segment",x=p1,xend=p2,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour="blue", size = 1)
 
 
   plist[[3]] <- venn.diagram(
@@ -110,7 +112,7 @@ doubleAssay<- function(nucmerr = nucmerr, assay1 = assay1, assay2 = assay2, outd
     #cross.area = unique(overlap$sample)),
     resolution = 300, imagetype = "png", alpha=c(0.5,0.5),
     fill=c("red","yellow"), cat.fontface=4,
-    main="Intersection of identified mutations by different assays",
+    main="Intersection of double mutations",
     main.cex = 2, #main.fontfamily = "Times New Roman",
     filename = NULL
   )

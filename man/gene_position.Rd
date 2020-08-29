@@ -4,7 +4,9 @@
 \name{gene_position}
 \alias{gene_position}
 \title{"GFF3" format gene position data for SARS-Cov-2}
-\format{A dataframe with 26 rows and 10 columns.}
+\format{
+A dataframe with 26 rows and 10 columns.
+}
 \source{
 \url{https://www.ncbi.nlm.nih.gov/}
 }

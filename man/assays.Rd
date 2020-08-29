@@ -4,7 +4,9 @@
 \name{assays}
 \alias{assays}
 \title{Assays for mutation detection using different primers and probes}
-\format{A dataframe with 10 rows and 7 columns.}
+\format{
+A dataframe with 10 rows and 7 columns.
+}
 \source{
 This data is created by Zhanglab in Xiamen University.
 }

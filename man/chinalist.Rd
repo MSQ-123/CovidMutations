@@ -4,7 +4,9 @@
 \name{chinalist}
 \alias{chinalist}
 \title{A list of places in China}
-\format{A dataframe with 31 rows and 1 column.}
+\format{
+A dataframe with 31 rows and 1 column.
+}
 \source{
 This data is created by Zhanglab in Xiamen University.
 }

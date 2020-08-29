@@ -4,8 +4,10 @@
 \name{nucmerr}
 \alias{nucmerr}
 \title{Preprocessed "nucmer.snpss" file using "nucmerRMD" function}
-\format{A dataframe with 150000 rows(downsampled mutation sites) and 10
-columns.}
+\format{
+A dataframe with 150000 rows(downsampled mutation sites) and 10
+columns.
+}
 \source{
 \url{https://www.gisaid.org/}
 }

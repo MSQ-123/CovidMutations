@@ -4,7 +4,9 @@
 \name{gff3}
 \alias{gff3}
 \title{"GFF3" format annotation data for SARS-Cov-2}
-\format{A dataframe with 26 rows and 10 columns.}
+\format{
+A dataframe with 26 rows and 10 columns.
+}
 \source{
 \url{https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=2697049}
 }

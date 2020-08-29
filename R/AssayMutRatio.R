@@ -14,6 +14,7 @@
 #' @export
 #' @importFrom ggplot2 aes ggplot geom_point theme_bw scale_x_continuous geom_vline
 #' theme labs scale_y_sqrt ggsave scale_y_continuous element_text geom_bar geom_text
+#' annotate arrow
 #' @importFrom graphics par barplot
 #' @importFrom grDevices png dev.off heat.colors rainbow
 #'
@@ -67,8 +68,9 @@ AssayMutRatio <- function(nucmerr = nucmerr, assays = assays, totalsample = tota
       theme(axis.text.x = element_text(angle=90, hjust=1, vjust=.5))+
       labs(x="SARS-CoV-2 Genomic position",
            title=paste0(assays$Assay[i],"-Total Mutant Samples:", TMN,"/Mutation_Ratio:",Mutation_Ratio,"%"))
+    P<- p+annotate("segment",x=F1,xend=F2,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour = "red", size = 1)+annotate("segment",x=R2,xend=R1,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour = "red", size = 1)+annotate("segment",x=P1,xend=P2,y=0,yend = 0, arrow = arrow(ends = "last", type = "closed"), colour="blue", size = 1)
     if(is.null(outdir) == FALSE){
-      ggsave(p,filename=paste0(assays$Assay[i],'.png'),width = 12, height = 8, dpi=300,path = outdir)
+      ggsave(P,filename=paste0(assays$Assay[i],'.png'),width = 12, height = 8, dpi=300,path = outdir)
     }
   }
 

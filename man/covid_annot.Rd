@@ -4,7 +4,9 @@
 \name{covid_annot}
 \alias{covid_annot}
 \title{Mutation annotation results produced by "indelSNP" function}
-\format{A large matrix.}
+\format{
+A large matrix.
+}
 \source{
 \url{https://www.gisaid.org/}
 }

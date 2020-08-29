@@ -4,7 +4,9 @@
 \name{refseq}
 \alias{refseq}
 \title{SARS-Cov-2 genomic reference sequence from NCBI}
-\format{"SeqFastadna" characters.}
+\format{
+"SeqFastadna" characters.
+}
 \source{
 \url{https://pubmed.ncbi.nlm.nih.gov/32015508/}
 }

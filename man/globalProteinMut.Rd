@@ -36,5 +36,9 @@ SARS-CoV-2 genome.
 data("covid_annot")
 outdir <- tempdir()
 covid_annot <- as.data.frame(covid_annot)
-globalProteinMut(covid_annot = covid_annot, outdir = outdir, figure_Type = "heatmap", top = 10, country = "USA")
+globalProteinMut(covid_annot = covid_annot,
+                 outdir = outdir,
+                 figure_Type = "heatmap",
+                 top = 10,
+                 country = "USA")
 }

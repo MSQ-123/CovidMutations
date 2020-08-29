@@ -4,7 +4,9 @@
 \name{nucmer}
 \alias{nucmer}
 \title{Mutation information derived from "nucmer" SNP analysis}
-\format{A dataframe with 43730 rows(mutation sites) and 14 columns.}
+\format{
+A dataframe with 43730 rows(mutation sites) and 14 columns.
+}
 \source{
 \url{https://www.gisaid.org/}
 }
