@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # CovidMutations
-A feasible framework for annotation and mutation analysis of COVID-19, including mutation profile visualization, statistics and the country distribution of mutational events. The assay data is conducive to detecting mutations in the SARS-CoV-2 genome.
+A feasible framework for mutation analysis and reverse transcription polymerase chain reaction (RT-PCR) assay evaluation of COVID-19, including mutation profile visualization, statistics and mutation ratio of each assay. The mutation ratio is conducive to evaluating the coverage of RT-PCR assays in large-sized samples.
 
 <!-- badges: start -->
 
